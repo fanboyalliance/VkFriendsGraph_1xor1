@@ -259,6 +259,8 @@ paket-files/
 # Gradle
 .gradle/
 
+build/
+
 # CodeRush
 .cr/
 
