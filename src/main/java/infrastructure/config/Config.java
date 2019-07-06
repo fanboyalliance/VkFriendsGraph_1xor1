@@ -1,4 +1,4 @@
-package main;
+package infrastructure.config;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -7,12 +7,16 @@ public class Config {
     public static String API_BASE_POINT;
     public static String VERSION;
     public static String CLIENT_ID;
+    public static String REDIRECT_URI;
+    public static String GET_FRIENDS = "method/friends.get";
+    public static String GET_MUTUAL_FRIENDS = "method/friends.getMutual";
 
     // TODO: while not found a way to deserialize into static fields
     private String oauthBasePoint;
     private String apiBasePoint;
     private String version;
     private String clientId;
+    private String redirectUri;
 
     @JsonSetter("oauthBasePoint")
     public void setOauthBasePoint(String oauthBasePoint) {
@@ -34,4 +38,8 @@ public class Config {
         CLIENT_ID = clientId;
     }
 
+    @JsonSetter("redirectUri")
+    public void setRedirectUri(String redirectUri) {
+        REDIRECT_URI = redirectUri;
+    }
 }
