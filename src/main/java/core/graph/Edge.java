@@ -1,4 +1,4 @@
-package core.Kruskal;
+package core.graph;
 
 public class Edge<T> implements Comparable<Edge<T>>{
     private Vertex<T> first;
