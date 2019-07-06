@@ -1,0 +1,8 @@
+{
+  "vkSettings": {
+    "oauthBasePoint" : "https://oauth.vk.com/",
+    "apiBasePoint" : "https://api.vk.com/",
+    "version" : "5.101",
+    "clientId" : "6722502"
+  }
+}
