@@ -8,14 +8,14 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonContainer {
-    private List<Person> person;
+    private List<Person> persons;
 
-    public List<Person> getPerson() {
-        return person;
+    public List<Person> getPersons() {
+        return persons;
     }
 
     @JsonSetter("items")
-    public void setPerson(ArrayList<Person> person) {
-        this.person = person;
+    public void setPersons(ArrayList<Person> persons) {
+        this.persons = persons;
     }
 }
