@@ -1,8 +1,8 @@
-package infrastructure.BindingModules;
+package infrastructure.bindingModules;
 
 import com.google.inject.AbstractModule;
-import infrastructure.Requests.FriendGetter;
-import infrastructure.Requests.HttpSenter;
+import infrastructure.requests.FriendGetter;
+import infrastructure.requests.HttpSenter;
 import infrastructure.interfaces.IFriendGetter;
 import infrastructure.interfaces.IHttpSenter;
 

@@ -1,7 +1,7 @@
 package infrastructure.interfaces;
 
-import infrastructure.Models.MutualFriendsContainer;
-import infrastructure.Models.PersonContainer;
+import infrastructure.models.MutualFriendsContainer;
+import infrastructure.models.PersonContainer;
 
 import java.util.ArrayList;
 

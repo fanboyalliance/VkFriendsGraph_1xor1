@@ -1,9 +1,9 @@
-package infrastructure.Requests;
+package infrastructure.requests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Inject;
-import infrastructure.Models.MutualFriendsContainer;
-import infrastructure.Models.PersonContainer;
+import infrastructure.models.MutualFriendsContainer;
+import infrastructure.models.PersonContainer;
 import infrastructure.config.Config;
 import infrastructure.interfaces.IFriendGetter;
 import infrastructure.interfaces.IHttpSenter;

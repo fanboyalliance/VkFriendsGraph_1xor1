@@ -1,4 +1,4 @@
-package infrastructure.Requests;
+package infrastructure.requests;
 
 import infrastructure.interfaces.IHttpSenter;
 import org.apache.logging.log4j.LogManager;

@@ -1,4 +1,4 @@
-package infrastructure.Models;
+package infrastructure.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
