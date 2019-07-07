@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="item" maxHeight="100.0" maxWidth="352.0" minHeight="100.0" minWidth="352.0" prefHeight="100.0" prefWidth="352.0" styleClass="anchor-pain" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controller.Friend">
+   <children>
+      <ImageView id="personPhoto" fx:id="personPhoto" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" styleClass="anchor-pane" />
+      <TextFlow id="personInfo" fx:id="personInfo" layoutX="102.0" maxHeight="100.0" maxWidth="252.0" minHeight="100.0" minWidth="252.0" prefHeight="100.0" prefWidth="252.0" styleClass="text-flow" />
+   </children>
+</AnchorPane>
