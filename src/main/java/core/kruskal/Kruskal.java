@@ -10,17 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Kruskal<T> implements IKruskal<T> {
-    private IGraph<T> graph;
-    private DisjointSet disjointSet;
     private Logger logger;
 
-    public Kruskal(IGraph<T> graph) {
-        this.graph = graph;
-        this.disjointSet = new DisjointSet(graph.getEdges().size());
+    public Kruskal() {
         logger = LogManager.getLogger(getClass());
     }
 
-    public void findMaxTree() {
+    public void findMaxTree(IGraph<T> graph) {
+        var disjointSet = new DisjointSet(graph.getEdges().size());
+
         graph.sortEdgesByDesc();
         logger.info("Start to do kruskal algorithm. Graph has " + graph.getEdges().size() + " sorted edges");
 
@@ -35,7 +33,6 @@ public class Kruskal<T> implements IKruskal<T> {
                 }
             }
         } catch (Exception e) {
-            logger.error("Algorithm cannot be done");
             logger.error(e.getMessage());
         }
 

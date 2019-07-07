@@ -4,7 +4,6 @@ package core.kruskal;
 public class DisjointSet {
     private int[] set;
     private int[] rnk;
-
     DisjointSet(int size) {
         set = new int [size];
         rnk = new int [size];

@@ -10,5 +10,6 @@ public interface IGraph<T> {
     void sortEdgesByDesc();
     void setMaxSpanningTreeEdges(List<Edge<T>> edges);
     List<Edge<T>> getMaxSpanningTreeEdges();
-    void addEdge(Vertex<T> v1, Vertex<T> v2, long weight);
+    void addEdge(T t1, T t2, long weight, long id1, long id2);
+    void addEdge(T t1, T t2, long weight);
 }
