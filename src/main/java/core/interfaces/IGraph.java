@@ -1,7 +1,6 @@
 package core.interfaces;
 
 import core.graph.Edge;
-import core.graph.Vertex;
 
 import java.util.List;
 

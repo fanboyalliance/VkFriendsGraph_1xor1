@@ -5,6 +5,7 @@ import core.interfaces.IKruskal;
 import core.graph.Edge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class Kruskal<T> implements IKruskal<T> {
         logger = LogManager.getLogger(getClass());
     }
 
-    public void findMaxTree(IGraph<T> graph) {
+    public void findMaxTree(@NotNull IGraph<T> graph) {
         var disjointSet = new DisjointSet(graph.getEdges().size());
 
         graph.sortEdgesByDesc();

@@ -1,5 +1,7 @@
 package core.interfaces;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface IKruskal<T> {
-    void findMaxTree(IGraph<T> graph);
+    void findMaxTree(@NotNull IGraph<T> graph);
 }
