@@ -77,3 +77,9 @@
 .scroll-pane:focused {
     -fx-background-insets: 0, 0, 0, 0;
 }
+
+.friend {
+    /*-fx-border-width: 2px;*/
+    -fx-end-margin: 2px;
+    -fx-background-color: orange;
+}

@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="690.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controller.FirstController">
+<AnchorPane prefHeight="690.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controller.MainController">
    <children>
       <TextFlow layoutX="324.0" layoutY="110.0" prefHeight="200.0" prefWidth="444.0" styleClass="text-flow" stylesheets="@../css/style.css" />
       <Button layoutX="470.0" layoutY="391.0" mnemonicParsing="false" onMouseClicked="#doSmth" prefHeight="73.0" prefWidth="195.0" stylesheets="@../css/style.css" text="Button" />
       <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="665.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane layoutX="856.0" prefHeight="690.0" prefWidth="376.0" styleClass="anchor-pane" stylesheets="@../css/style.css">
+      <AnchorPane fx:id="friendList" layoutX="871.0" prefHeight="690.0" prefWidth="365.0" styleClass="anchor-pane" stylesheets="@../css/style.css">
          <children>
-            <ScrollPane prefHeight="690.0" prefWidth="376.0" styleClass="anchor-pane" stylesheets="@../css/style.css">
+            <ScrollPane fx:id="main" prefHeight="690.0" prefWidth="365.0" styleClass="anchor-pane" stylesheets="@../css/style.css">
                <content>
-                  <VBox prefHeight="690.0" prefWidth="373.0" styleClass="anchor-pane" stylesheets="@../css/style.css" />
+                  <VBox fx:id="box" prefHeight="690.0" prefWidth="365.0" styleClass="anchor-pane" stylesheets="@../css/style.css" />
                </content>
             </ScrollPane>
          </children>
