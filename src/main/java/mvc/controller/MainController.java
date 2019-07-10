@@ -90,7 +90,7 @@ public class MainController implements Initializable, Runnable {
     @FXML
     public void createStartGraph(javafx.scene.input.MouseEvent event) {
         logger.info("hash set contains " + cacheIndexes.size());
-        if (cacheIndexes.size() == 0) {
+        if (cacheIndexes.size() <= 1) {
             setPopupMessage("Show graph", "you choose friends from list at first");
             logger.info("hash set is empty, returning ");
             return;
@@ -104,7 +104,9 @@ public class MainController implements Initializable, Runnable {
                     logger.info(myFriends.getPersons().get(i) + " is included");
                 }
             }
-
+//            var g = new GraphNewThread(copy);
+//            var t = new Thread(g);
+//            t.start();
             createGraph(copy);
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -122,17 +124,20 @@ public class MainController implements Initializable, Runnable {
                 logger.info("EDGE: " + megaTuple.get(i).x + " " + megaTuple.get(i).y  + " " +   megaTuple.get(i).z);
             }
             graph.setAttribute("ui.stylesheet", "edge { size: 3px; fill-color: orange; }");
-            Viewer viewer = graph.display();
-            viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
 
             int z = 0;
+
             for (Edge e : graph.getEachEdge()) {
                 e.addAttribute("label", "" + (int) e.getNumber("length"));
+                // TODO: ITS WOOORK
+                e.getNode0().addAttribute("ui.style", "size: 100px; fill-mode: image-scaled; fill-image: url(')');");
                 e.getNode0().addAttribute("label", megaTuple.get(z).x);
                 e.getNode1().addAttribute("label", megaTuple.get(z).y);
                 z++;
             }
-            graph.display();
+
+            Viewer viewer = graph.display();
+            viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
         } catch (Exception e) {
             logger.error(e.getMessage());
             e.printStackTrace();
@@ -143,18 +148,16 @@ public class MainController implements Initializable, Runnable {
     public void doKruskalAlgorithm(javafx.scene.input.MouseEvent mouseEvent) {
         var copy  = new PersonContainer();
         copy.setPersons(new ArrayList<>());
+        logger.info("WHEN I TRY KRUSKAL MY FRIENDS " + myFriends.getPersons().size());
         for (int i = 0; i < myFriends.getPersons().size(); i++) {
             if (cacheIndexes.contains(i)) {
                 copy.getPersons().add(myFriends.getPersons().get(i));
                 logger.info(myFriends.getPersons().get(i) + " is included");
             }
         }
-        if (copy.getPersons().size() == 0) {
+        if (copy.getPersons().size() <= 1) {
             setPopupMessage("Kruskal`s algorithm", "you create simple graph at first");
             logger.info("myFriends is empty, returning ");
-//            Popup popup = new Popup();
-//            Label label = new Label("This is a Popup");
-//            popup.getContent().add(label);
             return;
         }
         try {
@@ -172,10 +175,14 @@ public class MainController implements Initializable, Runnable {
             for (Edge e : graph.getEachEdge()) {
                 e.addAttribute("label", "" + (int) e.getNumber("length"));
                 e.getNode0().addAttribute("label", megaTuple2.get(i).x);
+                e.getNode0().addAttribute("ui.stylesheet", "node { fill-image: url(''); }");
                 e.getNode1().addAttribute("label", megaTuple2.get(i).y);
+                e.getNode1().addAttribute("ui.stylesheet", "node {  fill-image: url(''); }");
                 i++;
             }
-            graph.display();
+
+            Viewer viewer = graph.display();
+            viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
         } catch (Exception e) {
             logger.error(e.getMessage());
             e.printStackTrace();
@@ -257,3 +264,38 @@ public class MainController implements Initializable, Runnable {
         setGreetingMessage();
     }
 }
+// TODO: maybe later add new thread
+//class GraphNewThread implements Runnable {
+//    PersonContainer copy;
+//    public GraphNewThread(PersonContainer container) {
+//        this.copy = container;
+//    }
+//    private void createGraph() {
+//        System.out.println("I AM IN NEW THREAD " + Thread.currentThread().getId());
+//        try {
+//            var megaTuple = Facade.getInstance().getStartGraph(copy);
+//            var graph = new DefaultGraph("MEGAGRAPH", false, true);
+//            graph.clear();
+//            for (int i = 0; i < megaTuple.size(); i++) {
+//                graph.addEdge( i + "", megaTuple.get(i).x, megaTuple.get(i).y ).setAttribute("length",  megaTuple.get(i).z);
+//            }
+//            graph.setAttribute("ui.stylesheet", "edge { size: 3px; fill-color: orange; }");
+//
+//            int z = 0;
+//            for (Edge e : graph.getEachEdge()) {
+//                e.addAttribute("label", "" + (int) e.getNumber("length"));
+//                e.getNode0().addAttribute("label", megaTuple.get(z).x);
+//                e.getNode1().addAttribute("label", megaTuple.get(z).y);
+//                z++;
+//            }
+//            Viewer viewer = graph.display();
+//            viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    @Override
+//    public void run() {
+//        createGraph();
+//    }
+//}
