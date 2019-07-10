@@ -21,10 +21,10 @@ public class FriendGraphGetter implements IFriendGraphGetter {
     public FriendGraphGetter() {
         logger = LogManager.getLogger(getClass());
         this.kruskal = new Kruskal<>();
-        this.graph = new Graph<>();
     }
 
     public ArrayList<MinPersonDTO> getEdgesForStartGraph(@NotNull HashMap<Long, ArrayList<MinPersonDTO>> friendsByPersonId) {
+        this.graph = new Graph<>();
         for(Map.Entry<Long,  ArrayList<MinPersonDTO>> entry : friendsByPersonId.entrySet()) {
             for (int i = 0; i < entry.getValue().size(); i++) {
                 graph.addEdge(entry.getKey(), entry.getValue().get(i).friendId, entry.getValue().get(i).weight, entry.getKey(), entry.getValue().get(i).friendId);
@@ -45,6 +45,7 @@ public class FriendGraphGetter implements IFriendGraphGetter {
     }
 
     public ArrayList<MinPersonDTO> getEdgesForMinTree(@NotNull HashMap<Long, ArrayList<MinPersonDTO>> friendsByPersonId) {
+        this.graph = new Graph<>();
         for(Map.Entry<Long, ArrayList<MinPersonDTO>> entry : friendsByPersonId.entrySet()) {
             for (int i = 0; i < entry.getValue().size(); i++) {
                 graph.addEdge(entry.getKey(), entry.getValue().get(i).friendId, entry.getValue().get(i).weight, entry.getKey(), entry.getValue().get(i).friendId);
