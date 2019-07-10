@@ -10,6 +10,8 @@ public class Config {
     public static String REDIRECT_URI;
     public static String GET_FRIENDS = "method/friends.get";
     public static String GET_MUTUAL_FRIENDS = "method/friends.getMutual";
+    public static String API_TOKEN; // TODO: think about it
+    public static long USER_ID; // TODO: think about it
 
     // TODO: while not found a way to deserialize into static fields
     private String oauthBasePoint;
