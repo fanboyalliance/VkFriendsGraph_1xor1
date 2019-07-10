@@ -1,34 +1,29 @@
 package infrastructure.requests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.inject.Inject;
-import infrastructure.models.MutualFriendsContainer;
-import infrastructure.models.PersonContainer;
+import infrastructure.models.*;
 import infrastructure.config.Config;
 import infrastructure.interfaces.IFriendGetter;
 import infrastructure.interfaces.IHttpSenter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.StringReader;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FriendGetter implements IFriendGetter {
     private Logger logger;
     private IHttpSenter requestSenter;
 
-    @Inject
-    public FriendGetter(IHttpSenter requestSenter) {
+    public FriendGetter() {
         logger = LogManager.getLogger(getClass());
-        this.requestSenter = requestSenter;
+        this.requestSenter = new HttpSenter();
     }
 
     @Override
-    public PersonContainer getFriends(long userId, String accessToken) throws Exception {
-        if (accessToken == null) {
-            logger.error("Access token is null");
-            throw new Exception("Access token is null");
-        }
+    public PersonContainer getFriends(long userId,@NotNull String accessToken) throws Exception {
         var query = createQueryToGetFriends(userId, accessToken);
         logger.info("Created query string to get friends for userId " + userId);
         try {
@@ -47,12 +42,7 @@ public class FriendGetter implements IFriendGetter {
         }
     }
 
-    @Override
-    public MutualFriendsContainer getMutualFriends(long sourceId, ArrayList<Long> targetIds, String accessToken) throws Exception {
-        if (accessToken == null) {
-            logger.error("Access token is null");
-            throw new Exception("Access token is null");
-        }
+    private MutualFriendsContainer getMutualFriendsFromApi(long sourceId,@NotNull ArrayList<Long> targetIds,@NotNull String accessToken) throws Exception {
         if (targetIds.size() > 100) {
             // TODO: change later
             targetIds.remove(100);
@@ -75,7 +65,36 @@ public class FriendGetter implements IFriendGetter {
         }
     }
 
-    private String createQueryToGetFriends(long userId, String accessToken) {
+    @Override
+    public HashMap<Long, ArrayList<MinPersonDTO>>  getMutualFriends(long sourceId,@NotNull ArrayList<MinPersonDTO> container,@NotNull String accessToken) throws Exception {
+        HashMap<Long, ArrayList<MinPersonDTO>> map = new HashMap<>();
+
+        for (int i = 0; i < container.size(); i++) {
+            var firstId = container.get(i).id;
+            ArrayList<Long> arrayListId = (ArrayList<Long>) container.stream().map(x -> x.id).collect(Collectors.toList());
+            var friends = getMutualFriendsFromApi(firstId, arrayListId, accessToken);
+            ArrayList<MinPersonDTO> helperList = new ArrayList<>();
+            for (int j = 0; j < friends.getMutualFriends().size(); j++) {
+                if (firstId == friends.getMutualFriends().get(j).getId()) {
+                    // when itself
+                    continue;
+                }
+                var minPerson = new MinPersonDTO();
+                var mutualFriend = friends.getMutualFriends().get(j);
+                minPerson.friendId = mutualFriend.getId();
+                minPerson.weight = mutualFriend.getCommonCount();
+                helperList.add(minPerson);
+            }
+            map.put(firstId, helperList);
+
+            //Delay for requests
+            Thread.sleep(1000);
+        }
+
+        return map;
+    }
+
+    private String createQueryToGetFriends(long userId, @NotNull String accessToken) {
         StringBuilder sb = new StringBuilder();
         sb.append(Config.API_BASE_POINT);
         sb.append(Config.GET_FRIENDS);
@@ -88,7 +107,7 @@ public class FriendGetter implements IFriendGetter {
         return sb.toString();
     }
 
-    private String createQueryToGetMutualFriends(long sourceId, ArrayList<Long> targetIds, String accessToken) {
+    private String createQueryToGetMutualFriends(long sourceId, @NotNull ArrayList<Long> targetIds, @NotNull String accessToken) {
         StringBuilder sb = new StringBuilder();
         sb.append(Config.API_BASE_POINT);
         sb.append(Config.GET_MUTUAL_FRIENDS);

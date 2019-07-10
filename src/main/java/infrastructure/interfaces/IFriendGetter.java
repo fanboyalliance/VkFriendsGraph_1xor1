@@ -1,11 +1,13 @@
 package infrastructure.interfaces;
 
-import infrastructure.models.MutualFriendsContainer;
+import infrastructure.models.MinPersonDTO;
 import infrastructure.models.PersonContainer;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IFriendGetter {
-    PersonContainer getFriends(long userId, String accessToken) throws Exception;
-    MutualFriendsContainer getMutualFriends(long sourceId, ArrayList<Long> targetIds, String accessToken) throws Exception;
+    PersonContainer getFriends(long userId,@NotNull String accessToken) throws Exception;
+    HashMap<Long, ArrayList<MinPersonDTO>> getMutualFriends(long sourceId, @NotNull ArrayList<MinPersonDTO> container, @NotNull String accessToken) throws Exception;
 }

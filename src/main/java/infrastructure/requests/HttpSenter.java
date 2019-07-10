@@ -3,6 +3,7 @@ package infrastructure.requests;
 import infrastructure.interfaces.IHttpSenter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,8 +19,7 @@ public class HttpSenter implements IHttpSenter {
         logger = LogManager.getLogger(getClass());
     }
 
-    public String getRequest(String uri) throws IOException {
-        logger.info("Get request by uri " + uri);
+    public String getRequest(@NotNull String uri) throws IOException {
         String response = null;
         try {
             var url = new URL(uri);
@@ -44,7 +44,7 @@ public class HttpSenter implements IHttpSenter {
         } finally {
             con.disconnect();
         }
-        logger.info("Success");
+        logger.info("Success GET request");
 
         return response;
     }

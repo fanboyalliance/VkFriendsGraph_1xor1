@@ -1,7 +1,9 @@
 package infrastructure.interfaces;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 
 public interface IHttpSenter {
-    String getRequest(String uri) throws IOException;
+    String getRequest(@NotNull String uri) throws IOException;
 }
