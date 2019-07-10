@@ -25,13 +25,17 @@ public class Kruskal<T> implements IKruskal<T> {
 
         List<Edge<T>> edges = new ArrayList<>();
         try {
-            for (Edge e : graph.getEdges()) {
-                if (disjointSet.union((int)e.getFirst().getId(), (int)e.getSecond().getId())) {
-                    logger.info("Edge " + e.getId() + " is added to answer");
-                    edges.add(e);
-                } else  {
-                    logger.info("Edge " + e.getId() + " is skipped coz it creates a loop");
+            if (graph.getEdges().size() > 1) {
+                for (Edge e : graph.getEdges()) {
+                    if (disjointSet.union((int)e.getFirst().getId(), (int)e.getSecond().getId())) {
+                        logger.info("Edge " + e.getId() + " is added to answer");
+                        edges.add(e);
+                    } else  {
+                        logger.info("Edge " + e.getId() + " is skipped coz it creates a loop");
+                    }
                 }
+            } else {
+                edges.add(graph.getEdges().get(0));
             }
         } catch (Exception e) {
             logger.error(e.getMessage());
