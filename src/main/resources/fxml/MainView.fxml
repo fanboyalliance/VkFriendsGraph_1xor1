@@ -19,8 +19,8 @@
             </ScrollPane>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="showGraphBtn" layoutX="352.0" layoutY="359.0" onMouseClicked="#createStartGraph" prefHeight="73.0" prefWidth="235.0" stylesheets="@../css/style.css" text="Show graph" />
-      <JFXButton fx:id="useKruskalBtn" layoutX="352.0" layoutY="487.0" onMouseClicked="#doKruskalAlgorithm" prefHeight="73.0" prefWidth="235.0" stylesheets="@../css/style.css" text="Use Kruskal`s algorithm" />
+      <JFXButton fx:id="showGraphBtn" layoutX="352.0" layoutY="359.0" onMouseClicked="#createGraphEvent" prefHeight="73.0" prefWidth="235.0" stylesheets="@../css/style.css" text="Show graph" />
+      <JFXButton fx:id="useKruskalBtn" layoutX="352.0" layoutY="487.0" onMouseClicked="#doKruskalEvent" prefHeight="73.0" prefWidth="235.0" stylesheets="@../css/style.css" text="Use Kruskal`s algorithm" />
       <JFXButton fx:id="reloadCircle" layoutX="41.0" layoutY="626.0" maxHeight="37.0" onMouseClicked="#reloadScene"  prefHeight="32.0" prefWidth="38.0" styleClass="reload-button" stylesheets="@../css/style.css" text="R">
          <tooltip>
             <Tooltip text="Reload" />

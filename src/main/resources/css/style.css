@@ -4,7 +4,33 @@
 }
 
 .text-flow {
-    -fx-background-color:  #9575cd;
+    -fx-background-color: #D81B60;
+    -fx-font-family: 'Arial';
+    -fx-font-size: 20px;
+    -fx-text-alignment: center;
+    -fx-opacity: 0.85;
+}
+
+.greetingText {
+    -fx-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.jfx-button {
+    -fx-font-family: 'Arial';
+    -jfx-button-type: RAISED;
+    -fx-background-color: #D81B60;
+    -fx-text-fill: white;
+    -fx-focus-traversable: false;
+    -fx-font-size: 17px;
+}
+
+.reload-button {
+    -fx-background-radius: 18em;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
 }
 
 .scroll-pane {
@@ -50,8 +76,8 @@
 
 
 .scroll-pane:hover {
-     -fx-color: -fx-base;
- }
+    -fx-color: -fx-base;
+}
 
 .scroll-pane:showing {
     -fx-color: -fx-base;
@@ -64,7 +90,7 @@
 .anchor-pane:showing {
     -fx-color: -fx-base;
 }
-.button:focused {
+.button:focused, .jfx-button:focused {
     -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 5, 4, 3;
@@ -79,7 +105,12 @@
 }
 
 .friend {
-    /*-fx-border-width: 2px;*/
     -fx-end-margin: 2px;
-    -fx-background-color: orange;
+    -fx-background-color: #b085f5;
+}
+
+.friend-txt {
+    -fx-text-fill: white;
+    -fx-font-family: 'Arial';
+    -fx-font-size: 18px;
 }
