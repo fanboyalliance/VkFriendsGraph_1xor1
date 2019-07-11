@@ -137,7 +137,7 @@ public class MainController implements Initializable, Runnable {
                 ArrayList<MinPersonDTO> minPersonDto = null;
                 try {
                     minPersonDto = guiConnector.getStartGraph(copy);
-                    displayGraph(minPersonDto, "edge { size: 3px; fill-color: orange; text-size: 20; }");
+                    displayGraph(minPersonDto, "edge { size: 1px; fill-color: #ce93d8; text-size: 22; }");
                 } catch (Exception e) {
                     logger.error(e.getMessage());
                 }
@@ -156,7 +156,7 @@ public class MainController implements Initializable, Runnable {
                 ArrayList<MinPersonDTO> minPersonDto = null;
                 try {
                     minPersonDto = guiConnector.getMaxTree();
-                    displayGraph(minPersonDto, "edge { size: 3px; fill-color: red; text-size: 20; }");
+                    displayGraph(minPersonDto, "edge { size: 1px; fill-color: #f48fb1; text-size: 22; }");
                 } catch (Exception e) {
                     logger.error(e.getMessage());
                 }
@@ -179,6 +179,9 @@ public class MainController implements Initializable, Runnable {
             logger.info("EDGE: " + persons.get(i).id + " " + persons.get(i).friendId  + " " +   persons.get(i).mutualFriendsCount);
         }
         graph.setAttribute("ui.stylesheet", graphStyle);
+        graph.addAttribute("ui.quality");
+        graph.addAttribute("ui.antialias");
+
         int i = 0;
         for (Edge e : graph.getEachEdge()) {
             e.addAttribute("label", "" + (int) e.getNumber("length"));
@@ -250,7 +253,7 @@ public class MainController implements Initializable, Runnable {
                     });
 
                     box.getChildren().add(nodes[i]);
-                    logger.info("add node");
+                    logger.info("Add node = " + i);
                 } catch (Exception e) {
                     logger.error(e.getMessage());
                 }
