@@ -81,6 +81,7 @@ public class FriendGetter implements IFriendGetter {
                 }
                 var minPerson = new MinPersonDTO();
                 var mutualFriend = friends.getMutualFriends().get(j);
+                minPerson.id = firstId;
                 minPerson.friendId = mutualFriend.getId();
                 minPerson.weight = mutualFriend.getCommonCount();
                 helperList.add(minPerson);
@@ -88,7 +89,7 @@ public class FriendGetter implements IFriendGetter {
             map.put(firstId, helperList);
 
             //Delay for requests
-            Thread.sleep(1000);
+            Thread.sleep(700);
         }
 
         return map;

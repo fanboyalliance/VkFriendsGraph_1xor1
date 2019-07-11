@@ -1,4 +1,4 @@
-package infrastructure.Edges;
+package infrastructure.logic;
 
 import core.graph.Edge;
 import core.graph.Graph;
@@ -47,8 +47,10 @@ public class FriendGraphGetter implements IFriendGraphGetter {
     public ArrayList<MinPersonDTO> getEdgesForMinTree(@NotNull HashMap<Long, ArrayList<MinPersonDTO>> friendsByPersonId) {
         this.graph = new Graph<>();
         for(Map.Entry<Long, ArrayList<MinPersonDTO>> entry : friendsByPersonId.entrySet()) {
-            for (int i = 0; i < entry.getValue().size(); i++) {
-                graph.addEdge(entry.getKey(), entry.getValue().get(i).friendId, entry.getValue().get(i).weight, entry.getKey(), entry.getValue().get(i).friendId);
+            var persons = entry.getValue();
+            var idKey = entry.getKey();
+            for (int i = 0; i < persons.size(); i++) {
+                graph.addEdge(idKey, persons.get(i).friendId, persons.get(i).weight, idKey, persons.get(i).friendId);
             }
         }
 

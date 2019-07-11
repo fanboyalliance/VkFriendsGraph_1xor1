@@ -46,7 +46,7 @@ public class GuiConnector implements IGuiConnector {
     public ArrayList<MinPersonDTO> getStartGraph(ArrayList<MinPersonDTO> minPersonDto) throws Exception {
         try {
             mutualFriends = friendGetter.getMutualFriends(Config.USER_ID, minPersonDto, Config.API_TOKEN);
-            logger.info("Mutual friends from singleton " + mutualFriends.size());
+
             return mutualFiendGraph.getEdgesForStartGraph(mutualFriends);
         } catch (Exception e) {
             logger.error(e.getMessage());
