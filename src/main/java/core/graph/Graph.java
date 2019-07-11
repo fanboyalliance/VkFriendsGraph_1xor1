@@ -25,6 +25,7 @@ public class Graph<T> implements IGraph<T> {
     }
 
     public Graph() {
+        Vertex.reloadStaticField();
         cache = new HashMap<>();
         edges = new ArrayList<>();
     }

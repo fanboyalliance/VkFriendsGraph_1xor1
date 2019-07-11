@@ -39,6 +39,7 @@ public class Kruskal<T> implements IKruskal<T> {
             }
         } catch (Exception e) {
             logger.error(e.getMessage());
+            return;
         }
 
         logger.info("Maximum spanning tree of this graph has " + edges.size() + " edges");

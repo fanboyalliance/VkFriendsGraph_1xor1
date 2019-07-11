@@ -14,6 +14,10 @@ public class Vertex<T> {
         ID++;
     }
 
+    public static void reloadStaticField() {
+        ID = 0;
+    }
+
     public void setOutId(long outId) {
         this.outId = outId;
     }
