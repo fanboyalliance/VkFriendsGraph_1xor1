@@ -20,14 +20,16 @@ public class HttpSenter implements IHttpSenter {
     }
 
     public String getRequest(@NotNull String uri) throws IOException {
+        logger.info(uri);
         String response = null;
         try {
             var url = new URL(uri);
             con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Language", "en-US,en;q=0.9,ru;q=0.8");
             StringBuilder content;
             try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()))) {
+                    new InputStreamReader(con.getInputStream(), "UTF-8"))) {
                 String line;
                 content = new StringBuilder();
 
